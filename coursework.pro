@@ -10,12 +10,16 @@ CONFIG += c++17
 
 SOURCES += \
     abonent.cpp \
+    application.cpp \
+    interface.cpp \
     main.cpp \
-    widget.cpp
+    window.cpp
 
 HEADERS += \
     abonent.h \
-    widget.h
+    application.h \
+    interface.h \
+    window.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
