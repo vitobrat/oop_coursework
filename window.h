@@ -1,24 +1,26 @@
 #ifndef WINDOW_H
 #define WINDOW_H
+#include <QWidget>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QAbstractButton>
+#include <QRadioButton>
 #include <QMainWindow>
 #include <QApplication>
 #include <QPushButton>
+#include <QVBoxLayout>
+#include <vector>
+#include "abonent.h"
 
 class Window : public QMainWindow
 {
     Q_OBJECT
 public:
-    Window(QWidget *parent = nullptr) : QMainWindow(parent) {
-        // Устанавливаем заголовок для нового окна
-        setWindowTitle("Новое окно");
+    Window(QWidget *parent = nullptr, Abonent* a1 = nullptr, Abonent* a2 = nullptr, int *lines = 0);
 
-        // Создаем кнопку в новом окне
-        QPushButton *button = new QPushButton("Закрыть окно", this);
-        connect(button, &QPushButton::clicked, this, &Window::close);
-
-        // Устанавливаем кнопку в качестве центрального виджета
-        setCentralWidget(button);
-    }
+public slots:
+    void close_window(Abonent* abonent_from, Abonent* abonent_to, int &lines);
 };
 
 #endif // WINDOW_H

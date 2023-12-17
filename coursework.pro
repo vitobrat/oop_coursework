@@ -18,6 +18,7 @@ SOURCES += \
 HEADERS += \
     abonent.h \
     application.h \
+    connection.h \
     interface.h \
     window.h
 
