@@ -16,6 +16,9 @@
 class WindowFrom : public QMainWindow
 {
     Q_OBJECT
+    int *lines;
+    Abonent* abonent_from;
+    bool talk = false;
 public:
     explicit WindowFrom(QWidget *parent = nullptr, Abonent* a1 = nullptr, int *lines = 0);
 
@@ -25,6 +28,7 @@ signals:
 public slots:
     void closeWindowsSlot();
     void receiveMessage(const QString &message);
+    void confirmCall();
 
 private:
     QLabel *text;

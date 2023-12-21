@@ -87,16 +87,16 @@ void Interface::open_new_dialog(){
     }
     Connection *connection = new Connection(number_call_from->text().toStdString(), number_call_to->text().toStdString(), abonents);
     int status = connection->connection_status();
-    delete connection;
     if (!status){
         WindowFrom *new_window_from = new WindowFrom(this, connection->get_abonent_from(), &lines);
         new_window_from->show();
-        WindowTo *new_window_to = new WindowTo(this, connection->get_abonent_to(), &lines);
+        WindowTo *new_window_to = new WindowTo(this, connection->get_abonent_to(), &lines, connection->get_abonent_to()->get_number());
         new_window_to->show();
         connect(new_window_from, &WindowFrom::sendMessage, new_window_to, &WindowTo::receiveMessage);
         connect(new_window_to, &WindowTo::sendMessage, new_window_from, &WindowFrom::receiveMessage);
         connect(new_window_to, &WindowTo::closeWindowsSignal, new_window_from, &WindowFrom::closeWindowsSlot);
         connect(new_window_from, &WindowFrom::closeWindowsSignal, new_window_to, &WindowTo::closeWindowsSlot);
+        connect(new_window_to, &WindowTo::takeCall, new_window_from, &WindowFrom::confirmCall);
         lines--;
         message_text->setText("Номер набран");
     }else{
@@ -114,7 +114,7 @@ void Interface::open_new_dialog(){
             break;
         }
     }
-
+    delete connection;
 //    windows.push_back(new_window);
 }
 
