@@ -8,7 +8,8 @@
 #include <QRadioButton>
 #include <QVBoxLayout>
 #include <vector>
-#include "window.h"
+#include "windowfrom.h"
+#include "windowto.h"
 #include "abonent.h"
 #include "connection.h"
 
@@ -20,7 +21,7 @@ class Interface : public QWidget
     QPushButton *call_button; //звонок
     QLabel *message_text;//текст с сообщениями пользователю (снизу)
     std::vector<std::string> numbers;//список номеров
-    std::vector<Window*> windows;// список диалоговых окон
+    std::vector<WindowFrom*> windows;// список диалоговых окон
     std::vector<Abonent*> abonents;// список абонентов
 
     void set_abonents(QVBoxLayout *layout);

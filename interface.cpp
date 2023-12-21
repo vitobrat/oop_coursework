@@ -89,8 +89,14 @@ void Interface::open_new_dialog(){
     int status = connection->connection_status();
     delete connection;
     if (!status){
-        Window *new_window = new Window(this, connection->get_abonent_from(), connection->get_abonent_to(), &lines);
-        new_window->show();
+        WindowFrom *new_window_from = new WindowFrom(this, connection->get_abonent_from(), &lines);
+        new_window_from->show();
+        WindowTo *new_window_to = new WindowTo(this, connection->get_abonent_to(), &lines);
+        new_window_to->show();
+        connect(new_window_from, &WindowFrom::sendMessage, new_window_to, &WindowTo::receiveMessage);
+        connect(new_window_to, &WindowTo::sendMessage, new_window_from, &WindowFrom::receiveMessage);
+        connect(new_window_to, &WindowTo::closeWindowsSignal, new_window_from, &WindowFrom::closeWindowsSlot);
+        connect(new_window_from, &WindowFrom::closeWindowsSignal, new_window_to, &WindowTo::closeWindowsSlot);
         lines--;
         message_text->setText("Номер набран");
     }else{
