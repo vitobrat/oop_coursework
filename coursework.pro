@@ -13,13 +13,16 @@ SOURCES += \
     application.cpp \
     interface.cpp \
     main.cpp \
-    window.cpp
+    windowfrom.cpp \
+    windowto.cpp
 
 HEADERS += \
     abonent.h \
     application.h \
+    connection.h \
     interface.h \
-    window.h
+    windowfrom.h \
+    windowto.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
